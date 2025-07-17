@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College Confirmation Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>College Confirmation Portal</h1>
+
+    <form id="loginForm">
+      <h2>Login</h2>
+      <input type="text" placeholder="Registration Number" required id="regNo" />
+      <input type="date" required id="dob" />
+      <button type="submit">Login</button>
+    </form>
+
+    <form id="collegeForm" style="display:none;">
+      <h2>Confirm Your College</h2>
+      <select id="collegeSelect" required>
+        <option value="">Select a College</option>
+        <option>IIT Bombay</option>
+        <option>IIT Delhi</option>
+        <option>NIT Trichy</option>
+        <option>IIIT Hyderabad</option>
+        <option>BITS Pilani</option>
+      </select>
+      <input type="text" id="upi" placeholder="Enter your UPI ID" required />
+      <button type="submit">Pay ₹50,000</button>
+    </form>
+
+    <div id="loading" style="display:none;">
+      <h2>Processing Payment...</h2>
+      <div class="spinner"></div>
+    </div>
+
+    <div id="success" style="display:none;">
+      <h2>✅ Payment Successful!</h2>
+      <p id="successMsg"></p>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const collegeForm = document.getElementById("collegeForm");
+    const loading = document.getElementById("loading");
+    const success = document.getElementById("success");
+    const successMsg = document.getElementById("successMsg");
+
+    let studentName = "Ayush Kumar"; // Static name for this example
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      collegeForm.style.display = "block";
+    });
+
+    collegeForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const college = document.getElementById("collegeSelect").value;
+      const upi = document.getElementById("upi").value;
+      if (!college || !upi) return;
+
+      collegeForm.style.display = "none";
+      loading.style.display = "block";
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        success.style.display = "block";
+        successMsg.innerText = \`\${studentName}, your seat at \${college} is confirmed. ₹50,000 paid via UPI: \${upi}\`;
+      }, 7000);
+    });
+  </script>
+</body>
+</html>
