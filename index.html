@@ -11,14 +11,14 @@
   <div class="container">
     <h1>College Confirmation Portal</h1>
 
-    <form id="loginForm">
+    <div id="loginForm">
       <h2>Login</h2>
       <input type="text" placeholder="Registration Number" required id="regNo" />
       <input type="date" required id="dob" />
-      <button type="submit">Login</button>
-    </form>
+      <button onclick="handleLogin()">Login</button>
+    </div>
 
-    <form id="collegeForm" style="display:none;">
+    <div id="collegeForm" style="display:none;">
       <h2>Confirm Your College</h2>
       <select id="collegeSelect" required>
         <option value="">Select a College</option>
@@ -29,8 +29,8 @@
         <option>BITS Pilani</option>
       </select>
       <input type="text" id="upi" placeholder="Enter your UPI ID" required />
-      <button type="submit">Pay ₹50,000</button>
-    </form>
+      <button onclick="handlePayment()">Pay ₹50,000</button>
+    </div>
 
     <div id="loading" style="display:none;">
       <h2>Processing Payment...</h2>
@@ -44,35 +44,35 @@
   </div>
 
   <script>
-    const loginForm = document.getElementById("loginForm");
-    const collegeForm = document.getElementById("collegeForm");
-    const loading = document.getElementById("loading");
-    const success = document.getElementById("success");
-    const successMsg = document.getElementById("successMsg");
+    function handleLogin() {
+      const regNo = document.getElementById("regNo").value.trim();
+      const dob = document.getElementById("dob").value;
+      if (!regNo || !dob) {
+        alert("Please enter both Registration Number and DOB.");
+        return;
+      }
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("collegeForm").style.display = "block";
+    }
 
-    let studentName = "Ayush Kumar"; // Static name for this example
-
-    loginForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      loginForm.style.display = "none";
-      collegeForm.style.display = "block";
-    });
-
-    collegeForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    function handlePayment() {
       const college = document.getElementById("collegeSelect").value;
-      const upi = document.getElementById("upi").value;
-      if (!college || !upi) return;
+      const upi = document.getElementById("upi").value.trim();
+      if (!college || !upi) {
+        alert("Please select college and enter UPI ID.");
+        return;
+      }
 
-      collegeForm.style.display = "none";
-      loading.style.display = "block";
+      document.getElementById("collegeForm").style.display = "none";
+      document.getElementById("loading").style.display = "block";
 
       setTimeout(() => {
-        loading.style.display = "none";
-        success.style.display = "block";
-        successMsg.innerText = \`\${studentName}, your seat at \${college} is confirmed. ₹50,000 paid via UPI: \${upi}\`;
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("success").style.display = "block";
+        document.getElementById("successMsg").innerText =
+          `Ayush Kumar, your seat at ${college} is confirmed. ₹50,000 paid via UPI: ${upi}`;
       }, 7000);
-    });
+    }
   </script>
 </body>
 </html>
