@@ -4,55 +4,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JoOSA - Seat Allotment Confirmation</title>
+  <title>JoSAA 2025 - Seat Allotment Confirmation</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <img src="https://josaa.nic.in/applicant/images/josaalogo.png" alt="JoOSA Logo" class="logo">
-    <h1>Joint Seat Allocation Authority 2025</h1>
-    <h2>Seat Allotment Confirmation Portal</h2>
+  <header class="header">
+    <div class="header-content">
+      <img src="https://josaa.nic.in/applicant/images/josaalogo.png" alt="JoSAA Logo" class="logo">
+      <div>
+        <h1>Joint Seat Allocation Authority 2025</h1>
+        <h2>Seat Acceptance & Confirmation Portal</h2>
+      </div>
+    </div>
   </header>
 
   <main class="container">
-    <div id="loginForm" class="card">
+    <div id="loginForm" class="form-box">
       <h3>Candidate Login</h3>
-      <label>JEE Registration Number</label>
+      <label for="regNo">JEE(Main) Application Number</label>
       <input type="text" id="regNo" placeholder="Enter Registration Number" required>
-      <label>Date of Birth</label>
+
+      <label for="dob">Date of Birth</label>
       <input type="date" id="dob" required>
+
       <button onclick="handleLogin()">Login</button>
     </div>
 
-    <div id="collegeForm" class="card" style="display:none;">
-      <h3>College & Payment Details</h3>
-      <label>Select Allotted College</label>
+    <div id="collegeForm" class="form-box" style="display:none;">
+      <h3>Confirm Allotted Institute</h3>
+      <label for="collegeSelect">Select Institute</label>
       <select id="collegeSelect" required>
-        <option value="">--Select College--</option>
+        <option value="">-- Select Institute --</option>
         <option>IIT Bombay</option>
         <option>IIT Delhi</option>
         <option>NIT Trichy</option>
         <option>IIIT Hyderabad</option>
         <option>BITS Pilani</option>
       </select>
-      <label>Enter UPI ID</label>
-      <input type="text" id="upi" placeholder="e.g. ayush@upi" required>
+
+      <label for="upi">Enter UPI ID</label>
+      <input type="text" id="upi" placeholder="example@upi" required>
+
       <button onclick="handlePayment()">Pay ₹50,000 and Confirm</button>
     </div>
 
-    <div id="loading" class="card" style="display:none;">
+    <div id="loading" class="form-box" style="display:none;">
       <h3>Processing Payment...</h3>
       <div class="spinner"></div>
     </div>
 
-    <div id="success" class="card" style="display:none;">
-      <h3>✅ Payment Successful</h3>
+    <div id="success" class="form-box" style="display:none;">
+      <h3>✅ Seat Confirmation Successful</h3>
       <p id="successMsg"></p>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Joint Seat Allocation Authority (JoOSA). All rights reserved.</p>
+    <p>© 2025 Joint Seat Allocation Authority | National Informatics Centre (NIC)</p>
   </footer>
 
   <script>
@@ -60,7 +68,7 @@
       const regNo = document.getElementById("regNo").value.trim();
       const dob = document.getElementById("dob").value;
       if (!regNo || !dob) {
-        alert("Please enter both Registration Number and DOB.");
+        alert("Please enter both Application Number and DOB.");
         return;
       }
       document.getElementById("loginForm").style.display = "none";
@@ -82,7 +90,7 @@
         document.getElementById("loading").style.display = "none";
         document.getElementById("success").style.display = "block";
         document.getElementById("successMsg").innerText =
-          `Your seat at ${college} has been successfully confirmed. ₹50,000 paid using UPI ID: ${upi}`;
+          `Your seat at ${college} is confirmed. ₹50,000 paid via UPI: ${upi}`;
       }, 7000);
     }
   </script>
