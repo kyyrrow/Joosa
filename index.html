@@ -4,44 +4,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>College Confirmation Portal</title>
+  <title>JoOSA - Seat Allotment Confirmation</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>College Confirmation Portal</h1>
+  <header>
+    <img src="https://josaa.nic.in/applicant/images/josaalogo.png" alt="JoOSA Logo" class="logo">
+    <h1>Joint Seat Allocation Authority 2025</h1>
+    <h2>Seat Allotment Confirmation Portal</h2>
+  </header>
 
-    <div id="loginForm">
-      <h2>Login</h2>
-      <input type="text" placeholder="Registration Number" required id="regNo" />
-      <input type="date" required id="dob" />
+  <main class="container">
+    <div id="loginForm" class="card">
+      <h3>Candidate Login</h3>
+      <label>JEE Registration Number</label>
+      <input type="text" id="regNo" placeholder="Enter Registration Number" required>
+      <label>Date of Birth</label>
+      <input type="date" id="dob" required>
       <button onclick="handleLogin()">Login</button>
     </div>
 
-    <div id="collegeForm" style="display:none;">
-      <h2>Confirm Your College</h2>
+    <div id="collegeForm" class="card" style="display:none;">
+      <h3>College & Payment Details</h3>
+      <label>Select Allotted College</label>
       <select id="collegeSelect" required>
-        <option value="">Select a College</option>
+        <option value="">--Select College--</option>
         <option>IIT Bombay</option>
         <option>IIT Delhi</option>
         <option>NIT Trichy</option>
         <option>IIIT Hyderabad</option>
         <option>BITS Pilani</option>
       </select>
-      <input type="text" id="upi" placeholder="Enter your UPI ID" required />
-      <button onclick="handlePayment()">Pay ₹50,000</button>
+      <label>Enter UPI ID</label>
+      <input type="text" id="upi" placeholder="e.g. ayush@upi" required>
+      <button onclick="handlePayment()">Pay ₹50,000 and Confirm</button>
     </div>
 
-    <div id="loading" style="display:none;">
-      <h2>Processing Payment...</h2>
+    <div id="loading" class="card" style="display:none;">
+      <h3>Processing Payment...</h3>
       <div class="spinner"></div>
     </div>
 
-    <div id="success" style="display:none;">
-      <h2>✅ Payment Successful!</h2>
+    <div id="success" class="card" style="display:none;">
+      <h3>✅ Payment Successful</h3>
       <p id="successMsg"></p>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Joint Seat Allocation Authority (JoOSA). All rights reserved.</p>
+  </footer>
 
   <script>
     function handleLogin() {
@@ -70,7 +82,7 @@
         document.getElementById("loading").style.display = "none";
         document.getElementById("success").style.display = "block";
         document.getElementById("successMsg").innerText =
-          `Ayush Kumar, your seat at ${college} is confirmed. ₹50,000 paid via UPI: ${upi}`;
+          `Your seat at ${college} has been successfully confirmed. ₹50,000 paid using UPI ID: ${upi}`;
       }, 7000);
     }
   </script>
