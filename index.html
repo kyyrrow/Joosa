@@ -1,98 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JoSAA 2025 - Seat Allotment Confirmation</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Admission Confirmation - NIT Trichy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header class="header">
-    <div class="header-content">
-      <img src="https://josaa.nic.in/applicant/images/josaalogo.png" alt="JoSAA Logo" class="logo">
-      <div>
-        <h1>Joint Seat Allocation Authority 2025</h1>
-        <h2>Seat Acceptance & Confirmation Portal</h2>
-      </div>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+    <div class="text-green-600 mb-4">
+      <svg class="mx-auto w-16 h-16" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
     </div>
-  </header>
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Payment Successful</h1>
+    <p class="text-gray-700 text-lg mb-4">₹50,000 has been received successfully.</p>
 
-  <main class="container">
-    <div id="loginForm" class="form-box">
-      <h3>Candidate Login</h3>
-      <label for="regNo">JEE(Main) Application Number</label>
-      <input type="text" id="regNo" placeholder="Enter Registration Number" required>
-
-      <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" required>
-
-      <button onclick="handleLogin()">Login</button>
-    </div>
-
-    <div id="collegeForm" class="form-box" style="display:none;">
-      <h3>Confirm Allotted Institute</h3>
-      <label for="collegeSelect">Select Institute</label>
-      <select id="collegeSelect" required>
-        <option value="">-- Select Institute --</option>
-        <option>IIT Bombay</option>
-        <option>IIT Delhi</option>
-        <option>NIT Trichy</option>
-        <option>IIIT Hyderabad</option>
-        <option>BITS Pilani</option>
-      </select>
-
-      <label for="upi">Enter UPI ID</label>
-      <input type="text" id="upi" placeholder="example@upi" required>
-
-      <button onclick="handlePayment()">Pay ₹50,000 and Confirm</button>
+    <div class="border-t pt-4 mt-4">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2">Admission Status</h2>
+      <p class="text-gray-800 mb-2">Congratulations! 🎉</p>
+      <p class="text-gray-700">
+        Your seat for <strong>NIT Trichy - Computer Science & Engineering</strong> has been
+        <span class="text-green-600 font-semibold">provisionally confirmed</span>.
+        <br/>
+        Student Name: <strong>Ayush Kumar Mahato</strong>
+      </p>
     </div>
 
-    <div id="loading" class="form-box" style="display:none;">
-      <h3>Processing Payment...</h3>
-      <div class="spinner"></div>
+    <div class="mt-6 text-sm text-gray-600">
+      You will receive a confirmation email and a follow-up call shortly with next steps.
     </div>
 
-    <div id="success" class="form-box" style="display:none;">
-      <h3>✅ Seat Confirmation Successful</h3>
-      <p id="successMsg"></p>
+    <div class="mt-6">
+      <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Back to Home</a>
     </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Joint Seat Allocation Authority | National Informatics Centre (NIC)</p>
-  </footer>
-
-  <script>
-    function handleLogin() {
-      const regNo = document.getElementById("regNo").value.trim();
-      const dob = document.getElementById("dob").value;
-      if (!regNo || !dob) {
-        alert("Please enter both Application Number and DOB.");
-        return;
-      }
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("collegeForm").style.display = "block";
-    }
-
-    function handlePayment() {
-      const college = document.getElementById("collegeSelect").value;
-      const upi = document.getElementById("upi").value.trim();
-      if (!college || !upi) {
-        alert("Please select college and enter UPI ID.");
-        return;
-      }
-
-      document.getElementById("collegeForm").style.display = "none";
-      document.getElementById("loading").style.display = "block";
-
-      setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("success").style.display = "block";
-        document.getElementById("successMsg").innerText =
-          `Your seat at ${college} is confirmed. ₹50,000 paid via UPI: ${upi}`;
-      }, 7000);
-    }
-  </script>
+  </div>
 </body>
 </html>
